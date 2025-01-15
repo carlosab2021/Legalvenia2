@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { generateClient } from 'aws-amplify/data';
 import type { Schema } from '../../../amplify/data/resource';
+import outputs from '../../../amplify_outputs.json';
+import { AmplifyAuthenticatorModule, AuthenticatorService } from '@aws-amplify/ui-angular';
 
 const client = generateClient<Schema>();
 
@@ -14,11 +16,14 @@ const client = generateClient<Schema>();
 })
 export class TodosComponent implements OnInit {
   todos: any[] = [];
+  deleteTodo(id: string) {
+    client.models.Todo.delete({ id })
+  }
 
   ngOnInit(): void {
     this.listTodos();
   }
-
+  
   listTodos() {
     try {
       client.models.Todo.observeQuery().subscribe({
