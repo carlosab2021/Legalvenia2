@@ -43,6 +43,11 @@
                   "maximumWarning": "2kb",
                   "maximumError": "4kb"
                 }
+                {
+                  "type": "allScript",
+                  "maximumWarning": "999kb",
+                  "maximumError": "1mb"
+                }
               ],
               "outputHashing": "all"
             },
